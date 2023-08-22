@@ -13,3 +13,17 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
 kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+// Create a pod
+kubectl run my-app --image stacksimplify/kubenginx:1.0.0
+
+// Create a service
+kubectl expose pod my-app --type=NodePort --port=80 --target-port=30592 --name=my-service
+
+http://18.170.28.141:30592
+
+// Pod logs
+kubectl logs -f <pod name>
+
+// exec into pod
+kubectl exec -it <pod name> -- bash

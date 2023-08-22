@@ -28,10 +28,10 @@ module "nodegroup" {
   scaling_config   = var.scaling_config
 }
 
-# module "namespaces" {
-#   source     = "./namespaces"
-#   namespaces = var.namespaces
-# }
+module "namespaces" {
+  source     = "./namespaces"
+  namespaces = var.namespaces
+}
 
 # module "alb" {
 #   source            = "./alb"

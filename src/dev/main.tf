@@ -21,8 +21,8 @@ module "eks" {
   eks_version = "1.27"
 
   // Authorized roles and user
-  configmap_roles = []
-  configmap_users = []
+  configmap_roles = local.mapRoles
+  configmap_users = local.mapUsers
 
   // Cluster namespaces
   namespaces = ["plusonex"]

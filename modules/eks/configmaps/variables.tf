@@ -1,13 +1,7 @@
 variable "configmap_roles" {
-  type = list(object({}))
+  type = any
 }
 
-
 variable "configmap_users" {
-  default = [{
-    userarn  = "arn:aws:iam::374890768992:root"
-    username = "admin"
-    groups   = ["system:masters"]
-  }]
-  type = list(object({}))
+  type = any
 }

@@ -3,12 +3,11 @@ variable "subnet_ids" {
 }
 
 variable "configmap_roles" {
-  type = list(object({}))
+  type = any
 }
 
-
 variable "configmap_users" {
-  type = list(object({}))
+  type = any
 }
 
 variable "namespaces" {
