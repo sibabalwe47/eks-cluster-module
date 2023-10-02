@@ -1,0 +1,12 @@
+`User: eks.prod`
+export AWS_ACCESS_KEY_ID="AKIAVUA75GJ43DL2HHFB" \
+export AWS_SECRET_ACCESS_KEY="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" \
+export AWS_REGION="eu-west-2"
+
+
+
+`User: eks.user`
+export AWS_ACCESS_KEY_ID="AKIAVUA75GJ46XQURV6H" \
+export AWS_SECRET_ACCESS_KEY="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" \
+export AWS_REGION="eu-west-2"
+

@@ -1,0 +1,23 @@
+apiVersion: v2
+name: section26
+description: A Helm chart for Kubernetes
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+dependencies:
+- name: mychart1
+  version: "0.1.0"
+  repository: "https://stacksimplify.github.io/helm-charts/"
+  # condition: mychart4.enabled
+  tags:
+  - frontend
+- name: mychart2
+  version: "0.4.0"
+  repository: "https://stacksimplify.github.io/helm-charts/"
+  tags:
+  - backend
+- name: mysql
+  version: "9.9.0"
+  repository: "https://charts.bitnami.com/bitnami"
+  tags:
+  - database

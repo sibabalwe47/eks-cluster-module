@@ -1,0 +1,45 @@
+{{- $chartname := .Chart.Name -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ $chartname }}
+  labels:
+    app: nginx
+  annotations:
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/managed-by: {{ quote .Release.Service }}
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote | upper }}
+    app.kubernetes.io/name: {{ default "MYRELEASE101" .Values.releaseName }}
+spec:
+# {{- if eq .Values.myapp.env "prod" }}
+#   replicas: {{ default 2 .Values.replicaCount }}
+# {{- else if eq .Values.myapp.env "uat" }}
+#   replicas: 3
+# {{- else -}}
+#   replicas: 1
+# {{- end}}
+{{- if and .Values.myapp.retail.enableFeature (eq .Values.myapp.env "prod")}}
+  replicas: 1
+{{- else if or .Values.myapp.retail.enableFeature (eq .Values.myapp.env "uat")}}
+  replicas: 3
+{{- else if not (eq .Values.myapp.env "prod") }}
+  replicas: 2  
+{{- end }}
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+        appManagedBy: {{ $.Release.Service }}
+      {{- end }}
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80

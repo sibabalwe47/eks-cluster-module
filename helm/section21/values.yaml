@@ -1,0 +1,4 @@
+namespaces:
+- name: myapp1
+- name: myapp2
+- name: myapp3

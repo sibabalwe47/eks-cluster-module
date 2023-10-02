@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+data:
+{{- with .Values.data.config }}
+    {{- if eq $.Values.myapp.env "prod" }}
+    application-name: {{ .appName }}-{{ $.Values.myapp.env }}
+    application-type: {{ .appType }}-{{ $.Values.myapp.env }}
+    {{- end}}
+{{- end }}

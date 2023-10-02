@@ -1,0 +1,71 @@
+`helm search`
+helm search repo <repository-name>
+helm search repo <repository-name> --versions
+
+`helm install`
+helm install <release-name> <repository/chart-name>
+helm install <repository/chart-name> --generated-name
+helm install <release-name> <repository/chart-name> --namespace <namespace>
+
+`helm uninstall`
+helm uninstall <release-name>
+helm uninstall <release-name> --keep-history
+
+`helm upgrade`
+
+helm upgrade <release-name> <repo-name-in-local-desktop/chart-name> --set <overload-value>
+helm upgrade myapp1
+helm upgrade myapp101 stacksimplify/mychart2 --version="0.1.0"
+
+helm upgrade <release-name> <repository/chart-name> --set "replicaCount=<number>"
+helm upgrade <release-name> <repository/chart-name> --set "image.tag=<number>"
+
+`helm list`
+
+helm list (helm ls)
+
+`helm history`
+
+helm history <release-name>
+
+`helm status`
+
+helm status <release-name>
+helm status <release-name> --show-resources
+helm status <release-name> --revision
+
+`helm rollback`
+
+helm rollback <release-name>
+
+`helm create`
+
+helm create <chart-name>
+
+`helm dependency`
+
+helm dependency list
+helm dependency update
+
+`helm pull`
+
+helm pull <url> --untar
+helm pull https://stacksimplify.github.io/helm-charts/mychart4-0.1.0.tgz --untar
+
+rm -rf *.tgz
+rm charts/*.tgz
+
+Install istio with helm
+
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+helm search repo
+helm install istio-base istio/base -n istio-system --set defaultRevision=default
+helm status istio-base
+helm get all istio-base
+
+`helm plugin`
+
+helm plugin list
+helm plugin install <URL>
+helm plugin uninstall <name>
+helm plugin install https://github.com/komodorio/helm-dashboard.git

@@ -1,0 +1,36 @@
+{{/* Root Object (.) */}}
+
+Release object:
+Release Name: {{ .Release.Name }}
+Release Namespace: {{ .Release.Namespace }}
+Release IsUpgrade: {{ .Release.IsUpgrade }}
+Release IsInstall: {{ .Release.IsInstall }}
+Release Revision: {{ .Release.Revision }}
+Release Service: {{ .Release.Service }}
+
+Chart object:
+
+Chart Name: {{ .Chart.Name }}
+Chart Version: {{ .Chart.Version }}
+Chart AppVersion: {{ .Chart.AppVersion }}
+Chart Type: {{ .Chart.Type }}
+Chart Name and Version: {{ .Chart.Name }}-{{ .Chart.Version }}
+
+Values object:
+
+Replica count: {{ .Values.replicaCount }}
+Image repository: {{ .Values.image.repository }}
+
+Capabilities:
+
+K8s cluster version Major: {{ .Capabilities.KubeVersion.Major }}
+k8s cluster Version Minor: {{ .Capabilities.KubeVersion.Minor }}
+k8s cluster version: {{ .Capabilities.KubeVersion }} and {{ .Capabilities.KubeVersion.Version }}
+Helm Version: {{ .Capabilities.HelmVersion }}
+Helm Version semver: {{ .Capabilities.HelmVersion.Version }}
+
+
+Template object:
+
+Template Name: {{ .Template.Name }}
+Template Base Path: {{ .Template.BasePath }}

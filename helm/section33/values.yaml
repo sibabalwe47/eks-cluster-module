@@ -1,0 +1,8 @@
+# Global values
+global:
+  replicaCount: 4
+
+# Dependency tags
+tags:
+  frontend: true
+  backend: true

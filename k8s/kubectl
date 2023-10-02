@@ -1,0 +1,53 @@
+`EKS cluster`
+
+aws eks --region example_region update-kubeconfig --name cluster_name
+aws eks --region eu-west-2 update-kubeconfig --name eks-module-dev
+
+`kubectl exec`
+
+kubectl exec -it pod/service-account -n kube-system -- bash
+kubectl exec --stdin --tty pod/auth-service-596dc5f7f7-cszq5 -- bash
+
+`kubectl configmap`
+
+kubectl get configmap aws-auth -n kube-system -o yaml
+
+
+`kubectl a pod`
+
+kubectl run my-app --image stacksimplify/kubenginx:1.0.0
+
+`Create a service`
+kubectl expose pod my-app --type=NodePort --port=80 --target-port=30592 --name=my-service
+
+`Pod logs`
+kubectl logs -f <pod name>
+
+`exec into pod`
+kubectl exec -it <pod name> -- bash
+
+`Create a deployment`
+kubectl create deployment first-dep --image=stacksimplify/kubenginx:1.0.0
+
+`Scale replicas`
+kubectl scale --replicas=20 deployment first-dep
+
+`Expose deployment`
+kubectl expose deployment first-dep --type=NodePort --port=80 --target-port=32409 --name=my-service
+
+`Expose replicaset`
+kubectl expose rs first-dep-76996b47d4 --type=NodePort --port=80 --target-port=8080 --name=rs-service
+
+`Delete configmaps`
+kubectl delete configmap my-cofigmap -n namespacename 
+
+`Metrics server`
+
+kubectl top pods -n kube-systems
+
+`Load testing`
+
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://{{service-name}}; done"
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- //bin/sh -c "while sleep 0.01; do wget -q -O- http://ca-demo-service-nginx; done"
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- bash "while sleep 0.01; do wget -q -O- http://ca-demo-service-nginx; done"
+
