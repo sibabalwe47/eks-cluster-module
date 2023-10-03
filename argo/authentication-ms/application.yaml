@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authentication-ms
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: k8s
+    server: "https://kubernetes.default.svc"
+  source: 
+    path: 
+    repoURL: "https://github.com/sibabalwe47/authentication-ms-k8s.git"
+    targetRevision: main
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
