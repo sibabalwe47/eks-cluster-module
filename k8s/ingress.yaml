@@ -1,10 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: k8s-ingressgateway
-  namespace: default
-  labels:
-    app: ingress
+  name: k8s-dev
+  namespace: istio-system
   annotations:
     # Load Balancer Name
     alb.ingress.kubernetes.io/load-balancer-name: k8s-dev
@@ -26,19 +24,13 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:386613981817:certificate/e021f535-95f5-42d7-b47c-ee771482883f
 spec:
   ingressClassName: aws-load-balancer-controller
-  defaultBackend:
-    service:
-      name: grafana
-      port:
-        number: 3000
-# rules:
-# - host: <Host>
-#   http:
-#     paths:
-#     - pathType: Prefix
-#       path: "/"
-#       backend:
-#         service:
-#           name: <Service>
-#           port:
-#             number: <Port>
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port:
+              number: 31380

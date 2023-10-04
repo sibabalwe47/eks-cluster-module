@@ -9,7 +9,7 @@ spec:
     namespace: k8s
     server: "https://kubernetes.default.svc"
   source: 
-    path: 
+    path: "authenitcation-ms"
     repoURL: "https://github.com/sibabalwe47/authentication-ms-k8s.git"
     targetRevision: main
   syncPolicy:
